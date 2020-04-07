@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const StoryWrapper = styled.section`
+const StoryWrapper = styled.section `
   padding-top: 10px;
   margin-bottom: 20px;
   border-top: 1px solid #ccc;
@@ -15,12 +15,12 @@ const StoryWrapper = styled.section`
   }
 `;
 
-const HeaderWrapper = styled.header`
+const HeaderWrapper = styled.header `
   border-bottom: 1px solid hsla(0, 0%, 47%, 0.7);
   box-shadow: 0 2px 4px 0 hsla(0, 0%, 47%, 0.7);
 `;
 
-const FooterWrapper = styled.footer`
+const FooterWrapper = styled.footer `
   position: absolute;
   bottom: 0;
   width: 100%;
@@ -29,7 +29,7 @@ const FooterWrapper = styled.footer`
   border-top: 1px solid #d7d7d7;
 `;
 
-const StoryTitle = styled.h1`
+const StoryTitle = styled.h1 `
   margin-bottom: 5px;
   font-size: 18px;
   line-height: 1.8;
@@ -43,7 +43,7 @@ const StoryTitle = styled.h1`
   }
 `;
 
-const StoryMeta = styled.div`
+const StoryMeta = styled.div `
   font-style: italic;
 
   > span(:first-child) {
@@ -60,15 +60,32 @@ const StoryMeta = styled.div`
   }
 `;
 
-const StoryMetaElement = styled.span`
+const StoryMetaElement = styled.span `
   font-weight: bold;
   color: ${props => props.color || '#f00'};
 `;
 
+const TimeStamp = styled.p `
+  font-style: italic;
+  color: ${props => props.color || '#777'};
+`;
 
+const TimeStampGroup = styled.div `
+  display: flex;
+  flex-flow: row nowrap;
+  
+  > time:first-of-type {
+    padding-right: 1rem;
+  }
+`;
 
 export {
   StoryWrapper,
   HeaderWrapper,
-  FooterWrapper
+  FooterWrapper,
+  StoryTitle,
+  StoryMeta,
+  StoryMetaElement,
+  TimeStamp,
+  TimeStampGroup
 }

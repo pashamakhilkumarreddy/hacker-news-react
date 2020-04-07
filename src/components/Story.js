@@ -1,5 +1,7 @@
 import React, { useEffect, Fragment, useState } from 'react';
 import { getStory } from '../services/Api';
+import { mapTime } from '../mappers';
+import { TimeStamp, TimeStampGroup } from '../selectors/StoryStyles';
 
 const Story = ({ storyID  }) => {
   const [story, setStory] = useState({});
@@ -21,7 +23,7 @@ const Story = ({ storyID  }) => {
         // console.error(err.response.data.err);
       }
     })();
-  }, []);
+  });
   return (
     <Fragment>
       {
@@ -36,11 +38,18 @@ const Story = ({ storyID  }) => {
               <div className={`content`}>
                 <p className={``}>
                   <strong>
-                    <a href={checkPropAndRender(story.url)} target="_blank">{checkPropAndRender(story.title)}</a>
+                    <a href={checkPropAndRender(story.url)} target="_blank" rel="noopener noreferrer">
+                      {checkPropAndRender(story.title)}
+                    </a>
                   </strong>&nbsp;&nbsp;
                   { story.by ? <small>by: @{checkPropAndRender(story.by)}</small> : null }
                 </p>
-                <time dateTime={renderDateTime(story.time)}>{renderDateTime(story.time)}</time>
+                <TimeStampGroup>
+                  <time dateTime={renderDateTime(story.time)}>{renderDateTime(story.time)}</time>
+                  <TimeStamp>
+                    Posted: {mapTime(story.time)} ago
+                  </TimeStamp>
+                </TimeStampGroup>                
               </div>
             </div>
             </article>
