@@ -1,11 +1,11 @@
 import axios from 'axios';
 import { selectStoryFields } from '../utils';
 
-const baseURL = `https://hacker-news.firebaseio.com/v0/`;
+export const baseURL = `https://hacker-news.firebaseio.com/v0/`;
 
-const newStoriesURL = `${baseURL}newstories.json`;
+export const newStoriesURL = `${baseURL}newstories.json`;
 
-const storyURL = `${baseURL}item/`;
+export const storyURL = `${baseURL}item/`;
 
 export const getStory = async (storyId) => {
   const result = await axios.get(`${storyURL}${storyId}.json`);

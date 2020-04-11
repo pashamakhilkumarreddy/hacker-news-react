@@ -7,7 +7,7 @@ import {
   cleanup,
   waitForElement
 } from '@testing-library/react';
-import App from '../App';
+import StoriesContainer from '../containers/StoriesContainer';
 import {
   storyIds,
   singularStory
@@ -32,7 +32,7 @@ jest.mock('../services/Api.js', () => ({
   getStoryIds: jest.fn()
 }));
 
-test('Renders the application', async () => {
+test('renders the story container with a story', async () => {
   useInfiniteScroll.mockImplementation(() => ({
     count: STORY_INCREMENT
   }));
@@ -40,7 +40,7 @@ test('Renders the application', async () => {
   getStoryIds.mockImplementation(() => Promise.resolve(storyIds));
 
   await act(async () => {
-    const { getByText, queryByTestId } = render(<App />);
+    const { getByText, queryByTestId } = render(<StoriesContainer />);
     await waitForElement(() => [
       expect(getByText('Hacker News Stories')).toBeTruthy(),
       expect(getByText('Hacker News Stories')).toBeTruthy(),

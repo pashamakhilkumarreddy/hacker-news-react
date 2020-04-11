@@ -1,9 +1,9 @@
-import React, { useEffect, Fragment, useState } from 'react';
+import React, { useEffect, Fragment, useState, memo } from 'react';
 import { getStory } from '../services/Api';
 import { mapTime } from '../mappers';
 import { TimeStamp, TimeStampGroup } from '../selectors/StoryStyles';
 
-const Story = ({ storyID  }) => {
+const Story = memo(function ({ storyID  }) {
   const [story, setStory] = useState({});
 
   const renderDateTime = (dateTime) => dateTime ? Date(dateTime) : '';
@@ -27,7 +27,7 @@ const Story = ({ storyID  }) => {
   return (
     <Fragment>
       {
-        Object.keys(story).length ?  (<div className={`box`}>
+        Object.keys(story).length ?  (<div className={`box`} data-testid="story">
             <article className={`media`}>
               <div className={`media-left`}>
                 <figure className={`image is-64x64`}>
@@ -37,15 +37,15 @@ const Story = ({ storyID  }) => {
             <div className={`media-content`}>
               <div className={`content`}>
                 <p className={``}>
-                  <strong>
+                  <strong >
                     <a href={checkPropAndRender(story.url)} target="_blank" rel="noopener noreferrer">
                       {checkPropAndRender(story.title)}
                     </a>
                   </strong>&nbsp;&nbsp;
-                  { story.by ? <small>by: @{checkPropAndRender(story.by)}</small> : null }
+                  { story.by ? <small data-testid="story-by">by: @{checkPropAndRender(story.by)}</small> : null }
                 </p>
                 <TimeStampGroup>
-                  <time dateTime={renderDateTime(story.time)}>{renderDateTime(story.time)}</time>
+                  <time dateTime={renderDateTime(story.time)} data-testid="story-time">{renderDateTime(story.time)}</time>
                   <TimeStamp>
                     Posted: {mapTime(story.time)} ago
                   </TimeStamp>
@@ -57,6 +57,6 @@ const Story = ({ storyID  }) => {
       }
     </Fragment>
   );
-}
+})
 
 export default Story;

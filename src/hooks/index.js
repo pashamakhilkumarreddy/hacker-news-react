@@ -39,7 +39,7 @@ const useInfiniteScroll = () => {
 
   return {
     count
-  }
+  };
 }
 
 export {
